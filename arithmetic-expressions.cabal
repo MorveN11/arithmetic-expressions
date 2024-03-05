@@ -36,9 +36,9 @@ common executable-configuration
 
 library
   import:               configuration
-  exposed-modules:      Lib,
-                        ExpressionEvaluator,
+  exposed-modules:      Lib
                         ArithmeticExpression
+                        ExpressionEvaluator
   hs-source-dirs:       src
 
 executable arithmetic-expressions-exe
