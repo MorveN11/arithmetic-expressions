@@ -3,6 +3,9 @@ module ExpressionEvaluator (evalExpression, strToExpression) where
 import ArithmeticExpression (Expression (..), priority)
 import Data.Char (isDigit)
 
+isNotDigit :: Char -> Bool
+isNotDigit = not . isDigit
+
 evalExpression :: Expression -> Int
 evalExpression (Val e) = e
 evalExpression (Pow e1 e2) = evalExpression e1 ^ evalExpression e2
@@ -42,5 +45,5 @@ strToExpression xs
   where
     num = Val (read (takeWhile isDigit xs))
     rest = dropWhile isDigit xs
-    op = head rest
-    restAfterOp = tail rest
+    op = head (takeWhile isNotDigit rest)
+    restAfterOp = dropWhile isNotDigit rest
